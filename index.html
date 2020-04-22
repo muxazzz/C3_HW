@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+   
+</head>
+<body>
+    <input placeholder="Введите название города" id='city'></input>
+    <button onclick="localStorage.removeItem('city');city.value='';document.getElementById('city').placeholder=''">УДАЛИТЬ</button>     
+    <br>
+    <br>
+    <br>
+    <input type="checkbox" id='first'>не звонить мне</input>
+    <br>
+    <input type="checkbox" id='second'>я прочитал и согласен с правилами пользования сервисом</input>
+    <br>
+    <input type="checkbox" id='third'>я не выбираю эту галочку</input>
+    <br>
+    <input type="checkbox" id='fourth'>я подтверждаю, что свобода в интернете — это возможность выбирать галочки</input>
+    <br>
+    <input type="checkbox" id='fivth'>мне больше 12 лет</input>
+    <br>
+    <input type="checkbox" id='six'>это задание выполнено правильно</input>
+    <br>
+    <br>
+    <button onclick="save()">СОХРАНИТЬ</button> 
+
+</body>
+<script>
+       city.value = localStorage.getItem('city');
+    city.oninput = () => {
+        localStorage.setItem('city', "Ваш город  - " + city.value)
+        };
+    document.getElementById('city').placeholder = "Ваш город -" + city.value;
+  
+    function save(){
+    var checkbox = document.getElementById('first');
+    var checkbox1 = document.getElementById('second');
+    var checkbox2 = document.getElementById('third');
+    var checkbox3 = document.getElementById('fourth');
+    var checkbox4 = document.getElementById('fivth');
+    var checkbox5 = document.getElementById('six');
+    localStorage.setItem('first', checkbox.checked);
+    localStorage.setItem('second', checkbox1.checked);
+    localStorage.setItem('third', checkbox2.checked);
+    localStorage.setItem('fourth', checkbox3.checked);
+    localStorage.setItem('fivth', checkbox4.checked);
+    localStorage.setItem('six', checkbox5.checked);
+}
+
+function load(){    
+    var checked = JSON.parse(localStorage.getItem('first'));
+    var checked1 = JSON.parse(localStorage.getItem('second'));
+    var checked2 = JSON.parse(localStorage.getItem('third'));
+    var checked3 = JSON.parse(localStorage.getItem('fourth'));
+    var checked4 = JSON.parse(localStorage.getItem('fivth'));
+    var checked5 = JSON.parse(localStorage.getItem('six'));
+    document.getElementById("first").checked = checked;
+    document.getElementById("second").checked = checked1;
+    document.getElementById("third").checked = checked2;
+    document.getElementById("fourth").checked = checked3;
+    document.getElementById("fivth").checked = checked4;
+    document.getElementById("six").checked = checked5;
+}
+
+
+load();
+
+    </script>
+</html>
